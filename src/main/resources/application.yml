@@ -1,0 +1,127 @@
+server:
+  port: 8060
+
+spring:
+  profiles:
+    active: dev
+  # 加入错误码yml配置文件
+  config:
+    import: classpath:error-codes.yml
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  # 数据库连接配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://152.136.50.194:3306/tot23?characterEncoding=utf-8&useSSL=false&&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: Ljh@123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 数据源其他配置
+    # 初始化时建立物理连接的个数
+    initial-size: 5
+    #最小连接池数量
+    min-idle: 5
+    #最大连接池数量 maxIdle已经不再使用
+    max-active: 20
+    #获取连接时最大等待时间，单位毫秒
+    max-wait: 60000
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
+  # redis配置
+  redis:
+    host: 152.136.50.194
+    port: 6379
+  # thymeleaf配置
+  thymeleaf:
+    cache: false #开启模板缓存默认true
+    check-template: true
+    check-template-location: true
+    servlet:
+      content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    excluded-view-names:
+    mode: HTML
+    prefix: classpath:/view/
+    suffix: .html
+    mvc:
+      static-path-pattern: /view/**
+    web:
+      resources:
+        static-locations: classpath:/view
+
+# 配置mybatis
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  # type-aliases-package: com.tot.team4.entity
+  #开启驼峰命名
+  configuration:
+    map-underscore-to-camel-case: true
+
+# mybatis-plus相关配置
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      #主键类型 AUTO:"数据库ID自增" INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: auto
+  configuration:
+    # 是否开启自动驼峰命名规则映射:从数据库列名到Java属性驼峰命名的类似映射
+    map-underscore-to-camel-case: true
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 配置阿里云OSS
+aliyun:
+  oss:
+    # 对应公网endpoint地址
+    endpoint: oss-cn-beijing.aliyuncs.com
+    # 不要泄露
+    accessKeyId: LTAI5t95taoxijuf1kNVqeEM
+    # 不要泄露
+    accessKeySecret: 2O9eZKKmkihVB6DjSLKM0lo0lOfjDN
+    # 全局唯一不可变
+    bucketName: tot-bucket
+
+# 配置接口swagger
+springdoc:
+  api-docs:
+    enabled: true
+  # http://localhost:8060/swagger-ui/index.html
+  swagger-ui:
+    tags-sorter: alpha
+
+# 配置apollo
+#apollo:
+#  meta: http://config-service-url
+#  bootstrap:
+#    enabled: true
+#    namespaces: application
+
+# 本地存储目录
+local:
+  prefix: "/tot23/"
+#  "file":本地存储， "oss":远程
+storage:
+  switch: "oss"
+
+thread:
+  pool:
+    # 核心线程数
+    coreSize: 10
+    # 最大线程数
+    maxSize: 50
+    # 非核心线程的存活时间
+    keepalive: 30
+    # 阻塞队列大小
+    blockQueueSize: 200
+# 异步线程池并行度
+forkJoinPool:
+  parallelism: 16

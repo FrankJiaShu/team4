@@ -1,0 +1,9 @@
+error:
+  code:
+    notfound: 1001
+    invalidInput: 1002
+    unauthorized: 1003
+  msg:
+    notfound: The requested resource was not found.
+    invalidInput: Invalid input data.
+    unauthorized: Unauthorized access.
