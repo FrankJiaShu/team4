@@ -2,12 +2,18 @@
 # VERSION 1.0.0
 # Author: liujh-r
 
-FROM java:8
+FROM openjdk:8
 
-COPY *.jar /team4.jar
+# 作者信息
+MAINTAINER liujh-r <liujh-r@glodon.com>
 
-CMD ["--server.port=8060"]
+# VOLUME 指定了临时文件目录为/tmp。
+# 其效果是在主机 /var/lib/docker 目录下创建了一个临时文件，并链接到容器的/tmp
+VOLUME /tmp
 
-EXPOSE 8060
+# 将jar包添加到容器中并更名
+ADD team4-0.0.1-SNAPSHOT.jar team4.jar
 
-ENTRYPOINT ["java", "-jar", "/team4.jar"]
+# 运行jar包
+RUN bash -c 'touch /team4.jar'
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/team4.jar"]
