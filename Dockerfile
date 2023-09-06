@@ -20,4 +20,4 @@ EXPOSE 8060
 
 # 运行jar包
 # RUN bash -c 'touch /team4-0.0.1-SNAPSHOT.jar'
-ENTRYPOINT ["java", "-jar","/team4-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar","team4-0.0.1-SNAPSHOT.jar"]
