@@ -12,8 +12,8 @@ MAINTAINER liujh-r <liujh-r@glodon.com>
 VOLUME /tmp
 
 # 将jar包添加到容器中并更名
-ADD team4-0.0.1-SNAPSHOT.jar team4.jar
+# ADD team4-0.0.1-SNAPSHOT.jar team4.jar
 
 # 运行jar包
-RUN bash -c 'touch /team4.jar'
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/team4.jar"]
+RUN bash -c 'touch /team4-0.0.1-SNAPSHOT.jar'
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/team4-0.0.1-SNAPSHOT.jar"]
