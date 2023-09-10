@@ -12,7 +12,7 @@ MAINTAINER liujh-r <liujh-r@glodon.com>
 # VOLUME /tmp
 
 # 将jar包添加到容器中并更名
-# ADD team4-0.0.1-SNAPSHOT.jar team4.jar
+ADD team4-0.0.1-SNAPSHOT.jar team4.jar
 
 CMD ["--server.port=8060"]
 
